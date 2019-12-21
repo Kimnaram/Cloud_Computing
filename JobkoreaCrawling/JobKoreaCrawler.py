@@ -1,23 +1,28 @@
 import requests
 import re
 import lxml.html
+#import datetime
 import MySQLdb
 
 conn = MySQLdb.connect(db='Crawler', user='cloud', passwd='1111', charset='utf8mb4')
 
 c=conn.cursor()
 
+delete_sql = 'DELETE from re_info where site_name = "잡코리아"'
+
+c.execute(delete_sql)
+
+
 def crawling(page_count):
     front_url="http://www.jobkorea.co.kr/Starter/?JoinPossible_Stat=0&schOrderBy=0&LinkGubun=0&LinkNo=0&schType=0&schGid=0&Page="
 
     for i in range(1, page_count+1):
         url = front_url+str(i)
-
+        
         list_page=requests.get(url)
         root=lxml.html.fromstring(list_page.content)
         for everything in root.cssselect('.filterList'):
             for thing in everything.cssselect('li'):
-                t = 0
 
                 companies = thing.cssselect('.co .coTit a')
                 company = companies[0].text.strip()
@@ -66,23 +71,23 @@ def crawling(page_count):
                 deadlines = thing.cssselect('.side .day')
                 deadline = deadlines[0].text
 
-                select_sql = 'SELECT title, titlelink FROM Recruitment_Info'
+#                select_sql = 'SELECT title, titlelink FROM Recruitment_Info'
 
-                c.execute(select_sql)
+#                c.execute(select_sql)
 
-                for row in c.fetchall():
-                    for i in range(len(row)):
-                        if row[i] == title or row[i] == title_url:
-                            t = 1
+#                for row in c.fetchall():
+#                    for i in range(len(row)):
+#                        if row[i] == title or row[i] == title_url:
+#                            t = 1
 
-                if t == 0:
-                    insert_sql = 'INSERT INTO Recruitment_Info(company, title, titlelink, sitename, field1, field2, field3, career, academic, area, workingcondition, deadline) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+#                if t == 0:
+                 insert_sql = 'INSERT INTO Recruitment_Info(company, title, titlelink, sitename, field1, field2, field3, career, academic, area, workingcondition, deadline) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
-                    insert_val = company, title, title_url, site_name, field1, field2, field3, career, academic, area, workingcondition, deadline
+                 insert_val = company, title, title_url, site_name, field1, field2, field3, career, academic, area, workingcondition, deadline
 
-                    c.execute(insert_sql, insert_val)
+                 c.execute(insert_sql, insert_val)
 
-                    conn.commit()
+                 conn.commit()
 
 def main():
     page_count = 4
