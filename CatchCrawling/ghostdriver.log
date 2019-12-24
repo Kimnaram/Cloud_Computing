@@ -1,0 +1,40 @@
+PhantomJS is launching GhostDriver...
+[INFO  - 2019-12-24T05:42:14.449Z] GhostDriver - Main - running on port 59095
+[INFO  - 2019-12-24T05:42:15.224Z] Session [23ebce50-2610-11ea-83d8-577bddd11999] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2019-12-24T05:42:15.225Z] Session [23ebce50-2610-11ea-83d8-577bddd11999] - page.customHeaders:  - {}
+[INFO  - 2019-12-24T05:42:15.225Z] Session [23ebce50-2610-11ea-83d8-577bddd11999] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"linux-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2019-12-24T05:42:15.225Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 23ebce50-2610-11ea-83d8-577bddd11999
+[ERROR - 2019-12-24T05:42:20.760Z] Session [23ebce50-2610-11ea-83d8-577bddd11999] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Function.prototype.call.bind(Array.prototype.slice)')
+[ERROR - 2019-12-24T05:42:20.760Z] Session [23ebce50-2610-11ea-83d8-577bddd11999] - page.onError - stack:
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+[ERROR - 2019-12-24T05:42:20.799Z] Session [23ebce50-2610-11ea-83d8-577bddd11999] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'window.btoa.bind(window)')
+[ERROR - 2019-12-24T05:42:20.799Z] Session [23ebce50-2610-11ea-83d8-577bddd11999] - page.onError - stack:
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/vendor.8a519936e609ea4210f3.js:2)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/app.27bc08889abc6166ceeb.js:1)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/app.27bc08889abc6166ceeb.js:1)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/app.27bc08889abc6166ceeb.js:1)
+  s (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/manifest.b85e05138e1b31d49da8.js:1)
+  (anonymous function) (https://www.catch.co.kr/_nuxt/app.27bc08889abc6166ceeb.js:1)
+[INFO  - 2019-12-24T05:47:14.448Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2019-12-24T05:50:22.871Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1577166622823
