@@ -1,19 +1,22 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="naram.kim.recruit.model.*" %>
 <%@page import="java.util.ArrayList" %>
 
 <%
-   RecruitmentDAO dao = RecruitmentDAO.getInstance();
-   ArrayList<RecruitmentVO> list = dao.listRecruitment();
-   
-   pageContext.setAttribute("list", list);
-%>
+	String search = request.getParameter("search_keyword");
+	System.out.println(search);
+	RecruitmentDAO dao = RecruitmentDAO.getInstance();
+	ArrayList<RecruitmentVO> list = dao.searchRecruitment(search);
+	
+	pageContext.setAttribute("list", list);
+%>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com -->
-  <title>Jobcruit</title>
+  <title>Jobcruit - Search</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -234,7 +237,7 @@
 <!-- Container (About Section) -->
 <div id="recruit" class="container-fluid">
   <div class="row">
-<h2 class="text-center">Recruit</h2>
+<h2 class="text-center">Search Recruit</h2>
 <div class="container-fluid bg-grey">
   <div class="row">
   
@@ -368,4 +371,3 @@ $(document).ready(function(){
 
 </body>
 </html>
-    
