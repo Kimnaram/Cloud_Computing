@@ -5,9 +5,44 @@
 
 <%
 	RecruitmentDAO dao = RecruitmentDAO.getInstance();
-	ArrayList<RecruitmentVO> list = dao.listRecruitment();
-   
+	
+	int pg = 1;
+
+	String page_num = request.getParameter("pg");
+	
+	int rowSize = 10;
+	
+	if(page_num == null) {
+		page_num = "1";
+		pg = 1;
+	}
+	
+	if(page_num != null) {
+		pg = Integer.parseInt(page_num);
+	}
+	
+	int from = (pg * rowSize) - (rowSize - 1);
+	int to = (pg * rowSize);
+	
+	ArrayList<RecruitmentVO> list = dao.listRecruitment(from, to);
+		   
 	pageContext.setAttribute("list", list);
+	
+	int total = dao.RecruitmentTotal();
+	int allPage = (int)Math.ceil(total / (double)rowSize);
+	int block = 10;
+	
+	System.out.println("전체 페이지 수 : "+allPage);
+	System.out.println("현재 페이지 :"+page_num);
+	
+	int startPage = ((pg - 1) / block * block) + 1;
+	int endPage = ((pg - 1) / block * block + block);
+	if (endPage > allPage) {
+		endPage = allPage;
+	}
+	
+	System.out.println("페이지 시작 : "+startPage+" / 페이지 끝 : "+endPage);
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -174,11 +209,15 @@
 <h2 class="text-center">Recruit</h2>
 <div class="container-fluid bg-grey">
   <div class="row">
-  <c:forEach var="li" items="${list }">
+  <%
+  for (int i = 0; i < list.size(); i++) {
+	  RecruitmentVO r = list.get(i);
+  %>
+  <!--<c:forEach var="li" items="${list }">-->
     <table class="table table-hover">
     <thead>
       <tr>
-        <th width=100px>회사명</th>
+        <th width=200px>회사명</th>
         <th width=500px>제목</th>
         <th>사이트명</th>
         <th width=300px>분야1</th>
@@ -188,12 +227,12 @@
     </thead>
     <tbody>
       <tr>
-        <td width=100px>${li.company }</td>
-        <td width=500px><a class="title" href="${li.titlelink }" target="_blank">${li.title }</a></td>
-        <td>${li.site_name }</td>
-        <td width=300px>${li.field1 }</td>
-        <td>${li.field2 }</td>
-        <td>${li.field3 }</td>
+        <td width=100px><%=r.getCompany()%><!--  ${li.company } --></td>
+        <td width=500px><a class="title" href="<%=r.getTitlelink()%>" target="_blank"><%=r.getTitle()%></a></td>
+        <td><%=r.getSite_name()%></td>
+        <td width=300px><%=r.getField1()%></td>
+        <td><%=r.getField2()%></td>
+        <td><%=r.getField3()%></td>
       </tr>
     </tbody>
     <thead>
@@ -206,16 +245,58 @@
     </thead>
     <tbody>
     <tr>
-        <td>${li.career }</td>
-        <td>${li.academic }</td>
-        <td>${li.workingcondition }</td>
-        <td>${li.area }</td>
-        <td>${li.deadline }</td>
+        <td><%=r.getCareer()%></td>
+        <td><%=r.getAcademic()%></td>
+        <td><%=r.getWorkingcondition()%></td>
+        <td><%=r.getArea()%></td>
+        <td><%=r.getDeadline()%></td>
     </tr>
     </tbody>
   </table>
-  </c:forEach>
+  <!--</c:forEach>-->
+  <%
+  }
+  %>
   </div>
+  
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr><td colspan="4" height="5"></td></tr>
+  <tr>
+	<td align="center">
+		<%
+			if(pg>block) {
+		%>
+			[<a href="Jobcruit_main.jsp?pg=1">◀◀</a>]
+			[<a href="Jobcruit_main.jsp?pg=<%=startPage-1%>">◀</a>]
+		<%
+			}
+		%>
+		
+		<%
+			for(int i=startPage; i<=endPage; i++){
+				if(i==pg){
+		%>
+					<u><b>[<%=i%>]</b></u>
+		<%
+				}else{
+		%>
+					[<a href="Jobcruit_main.jsp?pg=<%=i %>"><%=i %></a>]
+		<%
+				}
+			}
+		%>
+		
+		<%
+			if(endPage<allPage){
+		%>
+			[<a href="Jobcruit_main.jsp?pg=<%=endPage+1%>">▶</a>]
+			[<a href="Jobcruit_main.jsp?pg=<%=allPage%>">▶▶</a>]
+		<%
+			}
+		%>
+		</td>
+		</tr>
+</table>
 </div>
 </div>
 </div>

@@ -34,11 +34,11 @@ public class RecruitmentDAO {
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	public ArrayList<RecruitmentVO> listRecruitment() {
+	public ArrayList<RecruitmentVO> listRecruitment(int from, int to) {
 		
 		ArrayList<RecruitmentVO> list = new ArrayList<>();
 		
-		String sql = "select * from re_info";
+		String sql = "select * from re_info where id >= ? and id >= ?";
 		
 		try {
 			
@@ -46,25 +46,27 @@ public class RecruitmentDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setInt(1, from);
+			pstmt.setInt(2, to);
+			
 			rs = pstmt.executeQuery(); // executeQuery()를 통해 select문 실행
 			
 			while(rs.next()) {
 				
-				int total = rs.getInt(1);
-				String company = rs.getString(2);
-				String title = rs.getString(3);
-				String titlelink = rs.getString(4);
-				String site_name = rs.getString(5);
-				String field1 = rs.getString(6);
-				String field2 = rs.getString(7);
-				String field3 = rs.getString(8);
-				String career = rs.getString(9);
-				String academic = rs.getString(10);
-				String area = rs.getString(11);
-				String workingcondition = rs.getString(12);
-				String deadline = rs.getString(13);
+				String company = rs.getString(1);
+				String title = rs.getString(2);
+				String titlelink = rs.getString(3);
+				String site_name = rs.getString(4);
+				String field1 = rs.getString(5);
+				String field2 = rs.getString(6);
+				String field3 = rs.getString(7);
+				String career = rs.getString(8);
+				String academic = rs.getString(9);
+				String area = rs.getString(10);
+				String workingcondition = rs.getString(11);
+				String deadline = rs.getString(12);
 				
-				RecruitmentVO vo = new RecruitmentVO(total, company, title, titlelink, site_name, field1
+				RecruitmentVO vo = new RecruitmentVO(company, title, titlelink, site_name, field1
 						, field2, field3, career, academic, area, workingcondition, deadline);
 				
 				list.add(vo);
@@ -151,6 +153,48 @@ public class RecruitmentDAO {
 			}
 			
 			return list;		
+	}
+	
+	public int RecruitmentTotal() {
+		
+		String sql = "select id from re_info";
+		int total = 0;
+		 
+		
+		try {
+			
+			conn = DriverManager.getConnection(url,user,upw);
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(); // executeQuery()를 통해 select문 실행
+			
+			while(rs.next()) {
+				
+				total = rs.getInt(1);
+				
+			}
+		} catch (Exception e) {
+				 
+				e.printStackTrace();
+			
+			} finally {
+					
+					try {
+						
+					if(conn != null) conn.close();
+					if(pstmt != null) pstmt.close();
+					if(rs != null) rs.close();
+					
+				} catch (Exception e2) {
+					
+					e2.printStackTrace();
+					
+				}
+
+			}
+			
+			return total;		
 	}
 	
 }
