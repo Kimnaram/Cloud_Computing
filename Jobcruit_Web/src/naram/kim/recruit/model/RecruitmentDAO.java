@@ -25,7 +25,7 @@ public class RecruitmentDAO {
 		return dao;
 	}
 	
-	String url = "jdbc:mysql://ec2-52-55-98-182.compute-1.amazonaws.com/Crawler";
+	String url = "jdbc:mysql://ec2-35-171-17-154.compute-1.amazonaws.com/Crawler";
 	String user = "cloud";
 	String upw = "1111";
 	
@@ -53,21 +53,22 @@ public class RecruitmentDAO {
 			
 			while(rs.next()) {
 				
-				String company = rs.getString(1);
-				String title = rs.getString(2);
-				String titlelink = rs.getString(3);
-				String site_name = rs.getString(4);
-				String field1 = rs.getString(5);
-				String field2 = rs.getString(6);
-				String field3 = rs.getString(7);
-				String career = rs.getString(8);
-				String academic = rs.getString(9);
-				String area = rs.getString(10);
-				String workingcondition = rs.getString(11);
-				String deadline = rs.getString(12);
+				String company = rs.getString(2);
+				String title = rs.getString(3);
+				String titlelink = rs.getString(4);
+				String site_name = rs.getString(5);
+				String field1 = rs.getString(6);
+				String field2 = rs.getString(7);
+				String field3 = rs.getString(8);
+				String career = rs.getString(9);
+				String academic = rs.getString(10);
+				String area = rs.getString(11);
+				String workingcondition = rs.getString(12);
+				String deadline = rs.getString(13);
+				float star = rs.getFloat(14);
 				
 				RecruitmentVO vo = new RecruitmentVO(company, title, titlelink, site_name, field1
-						, field2, field3, career, academic, area, workingcondition, deadline);
+						, field2, field3, career, academic, area, workingcondition, deadline, star);
 				
 				list.add(vo);
 			}
@@ -114,21 +115,22 @@ public class RecruitmentDAO {
 			
 			while(rs.next()) {
 				
-				String company = rs.getString(1);
-				String title = rs.getString(2);
-				String titlelink = rs.getString(3);
-				String site_name = rs.getString(4);
-				String field1 = rs.getString(5);
-				String field2 = rs.getString(6);
-				String field3 = rs.getString(7);
-				String career = rs.getString(8);
-				String academic = rs.getString(9);
-				String area = rs.getString(10);
-				String workingcondition = rs.getString(11);
-				String deadline = rs.getString(12);
+				String company = rs.getString(2);
+				String title = rs.getString(3);
+				String titlelink = rs.getString(4);
+				String site_name = rs.getString(5);
+				String field1 = rs.getString(6);
+				String field2 = rs.getString(7);
+				String field3 = rs.getString(8);
+				String career = rs.getString(9);
+				String academic = rs.getString(10);
+				String area = rs.getString(11);
+				String workingcondition = rs.getString(12);
+				String deadline = rs.getString(13);
+				float star = rs.getFloat(14);
 				
 				RecruitmentVO vo = new RecruitmentVO(company, title, titlelink, site_name, field1
-						, field2, field3, career, academic, area, workingcondition, deadline);
+						, field2, field3, career, academic, area, workingcondition, deadline, star);
 				
 				list.add(vo);
 			}

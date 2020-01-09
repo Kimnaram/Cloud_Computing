@@ -246,7 +246,7 @@
         <td><%=r.getWorkingcondition()%></td>
         <td><%=r.getArea()%></td>
         <td><%=r.getDeadline()%></td>
-        <td></td>
+        <td><%=r.getStar()%></td>
     </tr>
     </tbody>
   </table>

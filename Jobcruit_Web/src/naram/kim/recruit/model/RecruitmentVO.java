@@ -15,13 +15,14 @@ public class RecruitmentVO {
 	private String area;
 	private String workingcondition;
 	private String deadline;
-	
+	private float star;
+
 	public RecruitmentVO() { // 생성자
 		
 	}
 	
 	public RecruitmentVO(String company, String title, String titlelink, String site_name, String field1, String field2, String field3
-			, String career, String academic, String area, String workingcondition, String deadline) {
+			, String career, String academic, String area, String workingcondition, String deadline, float star) {
 		super();
 		
 		this.company = company;
@@ -36,6 +37,7 @@ public class RecruitmentVO {
 		this.area = area;
 		this.workingcondition = workingcondition;
 		this.deadline = deadline;
+		this.star = star;
 		
 	} // 생성자
 	
@@ -141,6 +143,14 @@ public class RecruitmentVO {
 
 	public void setDeadline(String deadline) {
 		this.deadline = deadline;
+	}
+	
+	public float getStar() {
+		return star;
+	}
+
+	public void setStar(float star) {
+		this.star = star;
 	}
 
 }
