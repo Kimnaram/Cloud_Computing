@@ -226,8 +226,12 @@
         <td width=470px><a class="title" href="<%=r.getTitlelink()%>" target="_blank"><%=r.getTitle()%></a></td>
         <td width=250px><%=r.getSite_name()%></td>
         <td width=380px><%=r.getField1()%></td>
-        <td width=200px><% if(r.getField2() != null) { r.getField2(); }%></td>
-        <td width=200px><% if(r.getField3() != null) { r.getField3(); }%></td>
+        <% if (r.getField2() != null) { %>
+        <td width=200px><%=r.getField2()%></td>
+        <% } %>
+        <% if (r.getField3() != null) { %>
+        <td width=200px><%=r.getField3()%></td>
+        <% } %>
       </tr>
     </tbody>
     <thead>
@@ -237,16 +241,26 @@
         <th>정규직/계약직</th>
         <th>지역</th>
         <th>마감일</th>
-        <th>? / ★★★★★</th>
+        <th>평점</th>
     </thead>
     <tbody>
     <tr>
+    	<% if (r.getCareer() != null) {%>
         <td><%=r.getCareer()%></td>
+        <% } %>
+        <% if (r.getAcademic() != null) {%>
         <td><%=r.getAcademic()%></td>
+        <% } %>
+        <% if (r.getWorkingcondition() != null) {%>
         <td><%=r.getWorkingcondition()%></td>
+        <% } %>
+        <% if (r.getArea() != null) { %>
         <td><%=r.getArea()%></td>
+        <% } %>
         <td><%=r.getDeadline()%></td>
+        <% if (r.getStar() != 0.0) { %>
         <td><%=r.getStar()%></td>
+        <% } %>
     </tr>
     </tbody>
   </table>
@@ -307,7 +321,7 @@
         <img src="../images/Seo.jpg" alt="서리태" style="width:350px; height:350px;">
         <p><strong>서리태</strong></p>
         <p>JSP, HTML, CSS 수정</p>
-        <p>Jobkorea, Incruit Scraping</p>
+        <p>Jobkorea, Incruit, Jobplanet Scraping</p>
       </div>
     </div>
   </div><br>
