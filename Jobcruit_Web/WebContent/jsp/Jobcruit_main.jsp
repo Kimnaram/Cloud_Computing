@@ -26,7 +26,7 @@
 	
 	ArrayList<RecruitmentVO> list = dao.listRecruitment(from, to);
 	
-	int total = dao.RecruitmentTotal();
+	int total = dao.listRecruitmentTotal();
 	int allPage = (int)Math.ceil(total / (double)rowSize);
 	int block = 10;
 	
@@ -334,6 +334,7 @@
       <p class="contact-p">Contact us and we'll get back to you within 24 hours.</p>
       <p class="contact-p"><span class="glyphicon glyphicon-map-marker"></span> Yongin, South Korea</p>
       <p class="contact-p"><span class="glyphicon glyphicon-envelope"></span> tlsdmswjs3@chungbuk.ac.kr</p>
+      <p class="contact-p"><span class="glyphicon glyphicon-globe"></span> <a href="https://github.com/Kimnaram/"></a></p>
     </div>
   </div>
 </div>

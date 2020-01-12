@@ -25,7 +25,7 @@ public class RecruitmentDAO {
 		return dao;
 	}
 	
-	String url = "jdbc:mysql://ec2-35-171-17-154.compute-1.amazonaws.com/Crawler";
+	String url = "jdbc:mysql://ec2-18-212-5-171.compute-1.amazonaws.com/Crawler";
 	String user = "cloud";
 	String upw = "1111";
 	
@@ -96,11 +96,94 @@ public class RecruitmentDAO {
 		return list;
 	}
 	
-	public ArrayList<RecruitmentVO> searchRecruitment(String search) {
+	public int listRecruitmentTotal() {
+		
+		String sql = "select count(id) from re_info";
+		int count = 0;
+		 
+		
+		try {
+			
+			conn = DriverManager.getConnection(url,user,upw);
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(); // executeQuery()를 통해 select문 실행
+			
+			while(rs.next()) {
+				
+				count = rs.getInt(1);
+				
+			}
+		} catch (Exception e) {
+				 
+				e.printStackTrace();
+			
+			} finally {
+					
+					try {
+						
+					if(conn != null) conn.close();
+					if(pstmt != null) pstmt.close();
+					if(rs != null) rs.close();
+					
+				} catch (Exception e2) {
+					
+					e2.printStackTrace();
+					
+				}
+
+			}
+			
+			return count;		
+	}
+	
+	public int searchRecruitmentTotal(String search) {
+		
+		String sql = "select count(*) from re_info where company like ? or title like ?";
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(url,user,upw);
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setString(2, "%"+search+"%");
+			
+			rs = pstmt.executeQuery(); // executeQuery()를 통해 select문 실행
+			
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+				 
+				e.printStackTrace();
+			
+			} finally {
+					
+					try {
+						
+					if(conn != null) conn.close();
+					if(pstmt != null) pstmt.close();
+					if(rs != null) rs.close();
+					
+				} catch (Exception e2) {
+					
+					e2.printStackTrace();
+					
+				}
+
+			}
+			
+			return count;		
+	}
+	
+	public ArrayList<RecruitmentVO> searchRecruitment(String search, int begin) {
 		
 		ArrayList<RecruitmentVO> list = new ArrayList<>();
 		
-		String sql = "select * from re_info where company like ? or title like ?";
+		String sql = "select * from re_info where company like ? or title like ? limit ?, 10";
 		 
 		
 		try {
@@ -110,6 +193,7 @@ public class RecruitmentDAO {
 			
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, "%"+search+"%");
+			pstmt.setInt(3, begin);
 			
 			rs = pstmt.executeQuery(); // executeQuery()를 통해 select문 실행
 			
@@ -155,48 +239,6 @@ public class RecruitmentDAO {
 			}
 			
 			return list;		
-	}
-	
-	public int RecruitmentTotal() {
-		
-		String sql = "select id from re_info";
-		int total = 0;
-		 
-		
-		try {
-			
-			conn = DriverManager.getConnection(url,user,upw);
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery(); // executeQuery()를 통해 select문 실행
-			
-			while(rs.next()) {
-				
-				total = total + 1;
-				
-			}
-		} catch (Exception e) {
-				 
-				e.printStackTrace();
-			
-			} finally {
-					
-					try {
-						
-					if(conn != null) conn.close();
-					if(pstmt != null) pstmt.close();
-					if(rs != null) rs.close();
-					
-				} catch (Exception e2) {
-					
-					e2.printStackTrace();
-					
-				}
-
-			}
-			
-			return total;		
 	}
 	
 }

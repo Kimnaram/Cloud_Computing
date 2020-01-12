@@ -3,13 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="naram.kim.recruit.model.*" %>
 <%@page import="java.util.ArrayList" %>
-
 <%
 	String search = request.getParameter("search_keyword");
 
-//	if(search == null) {
-//		response.sendRedirect("Jobcruit_main.jsp");
-//	}
+	if(search == null) {
+		response.sendRedirect("Jobcruit_main.jsp");
+	}
 
 	RecruitmentDAO dao = RecruitmentDAO.getInstance();
 	
@@ -31,17 +30,14 @@
 	int from = (pg * rowSize) - (rowSize - 1);
 	int to = (pg * rowSize);
 	
-	ArrayList<RecruitmentVO> list = dao.searchRecruitment(search);
+	int s_total = dao.searchRecruitmentTotal(search);
 	
-	int total = 0;
+	ArrayList<RecruitmentVO> list = dao.searchRecruitment(search, from);
 	
-	for(int i = 0; i < list.size(); i++) {
-		total = total + 1;
-	}
-	
-	int allPage = (int)Math.ceil(total / (double)rowSize);
+	int allPage = (int)Math.ceil(s_total / (double)rowSize);
 	int block = 10;
 	
+	System.out.println("전체 공고 수: "+s_total);
 	System.out.println("전체 페이지 수 : "+allPage);
 	System.out.println("현재 페이지 : "+page_num);
 	
@@ -350,6 +346,7 @@
       <p class="contact-p">Contact us and we'll get back to you within 24 hours.</p>
       <p class="contact-p"><span class="glyphicon glyphicon-map-marker"></span> Yongin, South Korea</p>
       <p class="contact-p"><span class="glyphicon glyphicon-envelope"></span> tlsdmswjs3@chungbuk.ac.kr</p>
+      <p class="contact-p"><span class="glyphicon glyphicon-globe"></span> <a href="https://github.com/Kimnaram/"></a></p>
     </div>
   </div>
 </div>
