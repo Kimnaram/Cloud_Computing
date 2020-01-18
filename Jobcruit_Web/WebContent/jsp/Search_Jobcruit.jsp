@@ -37,17 +37,11 @@
 	int allPage = (int)Math.ceil(s_total / (double)rowSize);
 	int block = 10;
 	
-	System.out.println("전체 공고 수: "+s_total);
-	System.out.println("전체 페이지 수 : "+allPage);
-	System.out.println("현재 페이지 : "+page_num);
-	
 	int startPage = ((pg - 1) / block * block) + 1;
 	int endPage = ((pg - 1) / block * block + block);
 	if (endPage > allPage) {
 		endPage = allPage;
 	}
-	
-	System.out.println("페이지 시작 : "+startPage+" / 페이지 끝 : "+endPage);
 %>    
 <!DOCTYPE html>
 <html lang="en">
@@ -326,7 +320,7 @@
 
 <!-- Container (Portfolio Section) -->
 <div id="portfolio" class="container-fluid text-center bg-grey">
-  <h2>Portfolio</h2><br>
+  <h2>PORTFOLIO</h2><br>
   <div class="row text-center slideanim">
     <div>
       <div class="thumbnail">
@@ -336,22 +330,23 @@
         <p>Jobkorea, Incruit, Jobplanet Scraping</p>
       </div>
     </div>
-  </div><br>
+  </div>
+</div>
 
 <!-- Container (Contact Section) -->
-<div id="contact" class="container-fluid bg-grey">
-  <h2 class="text-center">CONTACT</h2>
-  <div class="row">
-    <div>
+<div id="contact" class="container-fluid text-center bg-grey">
+  <h2>CONTACT</h2>
+  <div class="row text-center slideanim">
+    <div class="container-fluid bg-grey">
       <p class="contact-p">Contact us and we'll get back to you within 24 hours.</p>
       <p class="contact-p"><span class="glyphicon glyphicon-map-marker"></span> Yongin, South Korea</p>
       <p class="contact-p"><span class="glyphicon glyphicon-envelope"></span> tlsdmswjs3@chungbuk.ac.kr</p>
-      <p class="contact-p"><span class="glyphicon glyphicon-globe"></span> <a href="https://github.com/Kimnaram/"></a></p>
+      <p class="contact-p"><span class="glyphicon glyphicon-globe"></span> <a href="https://github.com/Kimnaram/">https://github.com/Kimnaram/</a></p>
     </div>
   </div>
 </div>
 
-<footer class="container-fluid text-center">
+<footer class="container-fluid text-center bg-grey">
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
@@ -396,4 +391,4 @@ $(document).ready(function(){
 </script>
 
 </body>
-</html> 
+</html>
